@@ -10,7 +10,12 @@ import { extractFembed } from './helpers/extractors/fembed.js';
 import { USER_AGENT, renameKey } from './utils.js';
 
 const BASE_URL = 'https://gogoanime.film/';
-const BASE_URL2 = 'https://gogoanime.gg/';
+const MOVIE_BASE_URL = 'https://www7.gogoanime.me/';
+const ANIHD_URL = 'https://anihdplay.com/videos';
+const BASE_URL2 = 'https://gogoanime3.net/';
+
+
+
 const ajax_url = 'https://ajax.gogo-load.com/';
 const anime_info_url = 'https://gogoanime.film/category/';
 const anime_movies_path = '/anime-movies.html';
@@ -217,7 +222,9 @@ export const scrapeRecentRelease = async ({ list = [], page = 1, type = 1 }) => 
     episodeNum: $(el).find('p.episode').text().replace('Episode ', '').trim(),
     subOrDub: $(el).find('div > a > div').attr('class').replace('type ic-', ''),
     animeImg: $(el).find('div > a > img').attr('src'),
-    episodeUrl: BASE_URL + '/' + $(el).find('p.name > a').attr('href'),
+  //  episodeUrl: BASE_URL + '/' + $(el).find('p.name > a').attr('href'),
+    episodeUrl: ANIHD_URL + $(el).find('p.name > a').attr('href'),
+
    });
   });
   return list;
@@ -449,7 +456,7 @@ export const scrapeAnimeDetails = async ({ id }) => {
    epList.push({
     episodeId: $(el).find('a').attr('href').split('/')[1],
     episodeNum: $(el).find(`div.name`).text().replace('EP ', ''),
-    episodeUrl: BASE_URL + $(el).find(`a`).attr('href').trim(),
+    episodeUrl: ANIHD_URL + $(el).find(`a`).attr('href').trim(),
     isSubbed:  episodeLocale == "sub",
     isDubbed:  episodeLocale == "dub",
    });
