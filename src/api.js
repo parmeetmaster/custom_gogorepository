@@ -19,7 +19,7 @@ import {
     DownloadReferer,
 } from './anime_parser.js';
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3002;
 
 const corsOptions = {
     origin: '*',

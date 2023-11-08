@@ -186,7 +186,7 @@ export const scrapeM3U8 = async ({ id }) => {
 export const scrapeSearch = async ({ list = [], keyw, page = 1 }) => {
  try {
   const searchPage = await axios.get(
-   `${BASE_URL + search_path}?keyword=${keyw}&page=${page}`
+   `${BASE_URL2 + search_path}?keyword=${keyw}&page=${page}`
   );
   const $ = cheerio.load(searchPage.data);
 
@@ -194,7 +194,7 @@ export const scrapeSearch = async ({ list = [], keyw, page = 1 }) => {
    list.push({
     animeId: $(el).find('p.name > a').attr('href').split('/')[2],
     animeTitle: $(el).find('p.name > a').attr('title'),
-    animeUrl: BASE_URL + '/' + $(el).find('p.name > a').attr('href'),
+    animeUrl: BASE_URL2 + '/' + $(el).find('p.name > a').attr('href'),
     animeImg: $(el).find('div > a > img').attr('src'),
     status: $(el).find('p.released').text().trim(),
    });
